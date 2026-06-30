@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandawa Group - Travel & Rental Terintegrasi</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Icon Mobil & Media -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #e62129; /* Merah Pandawa */
+            --secondary-color: #bfa15f; /* Emas Wayang */
+            --dark-color: #0b0b0b;
+            --light-color: #ffffff;
+            --grey-color: #161616;
+            --card-bg: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: rgba(11, 11, 11, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero / Homepage Banner menggunakan https://github.com/putuneeyangjono '104845.png */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(11, 11, 11, 1)), url('104845.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px 60px 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 25px 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(191, 161, 95, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #dddddd;
+            margin-bottom: 25px;
+        }
+
+        .btn-cta {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 35px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            background-color: #b3141a;
+            box-shadow: 0 0 20px rgba(230, 33, 41, 0.6);
+        }
+
+        /* Section Global */
+        section {
+            padding: 80px 20px 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        /* Profile Section */
+        .profile-box {
+            background-color: var(--grey-color);
+            padding: 40px;
+            border-radius: 10px;
+            border-left: 5px solid var(--secondary-color);
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.6);
+        }
+
+        .profile-box p {
+            font-size: 17px;
+            color: #dddddd;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Sub-title Kategori Armada */
+        .category-title {
+            font-size: 24px;
+            color: #ffffff;
+            margin: 40px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        /* Fleet Grid Layout */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .fleet-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Placeholder / Gambar Ilustrasi Mobil yang Elegan */
+        .fleet-img-box {
+            height: 160px;
+            background: linear-gradient(45deg, #111, #252525);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 2px solid #2a2a2a;
+        }
+
+        .fleet-img-box i {
+            font-size: 60px;
+            color: rgba(255,255,255,0.15);
+        }
+
+        .fleet-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .fleet-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .fleet-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .fleet-meta {
+            font-size: 13px;
+            color: #b0b0b0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fleet-meta i {
+            color: var(--secondary-color);
+        }
+
+        .fleet-price-box {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .price-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .price-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .price-unit {
+            font-size: 13px;
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        /* Travel Route Summary Widget dari gambar */
+        .route-widget {
+            background-color: var(--grey-color);
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .route-widget h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .route-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .route-tag {
+            background-color: #111;
+            border-left: 4px solid var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .route-tag i {
+            color: var(--secondary-color);
+            margin: 0 5px;
+        }
+
+        /* Call Center / Footer */
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 2px solid var(--secondary-color);
+        }
+
+        .cc-box {
+            background-color: var(--grey-color);
+            max-width: 500px;
+            margin: 0 auto 25px;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px dashed var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .cc-box h3 {
+            margin-bottom: 10px;
+            color: var(--light-color);
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .phone-number {
+            font-size: 26px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 5px;
+            transition: 0.2s;
+        }
+
+        .phone-number:hover {
+            color: #ff4d52;
+            transform: scale(1.02);
+        }
+
+        .copy {
+            font-size: 13px;
+            color: #555;
+            margin-top: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul li {
+                margin: 0 12px;
+            }
+            .hero {
+                height: 80vh;
+                padding-bottom: 40px;
+            }
+            .hero h1 {
+                font-size: 30px;
+            }
+            .hero p {
+                font-size: 14px;
+            }
+            .section-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigasi -->
+    <header>
+        <div class="navbar">
+            <div class="logo">PANDAWA <span>GROUP</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#armada">Armada</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section / Homepage dengan Background Gambar 99569.png -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PANDAWA GROUP</h1>
+            <p>ENJOY YOUR JOURNEY - Solusi perjalanan Travel Reguler & Rental Mobil berkualitas tinggi untuk mobilitas modern Anda.</p>
+            <a href="https://wa.me/6287760666683?text=Halo%20Pandawa%20Group,%20saya%20ingin%20memesan/bertanya%20mengenai%20armada" class="btn-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i> Hubungi Guruh (WhatsApp)
+            </a>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profil">
+        <h2 class="section-title">Profil Perusahaan</h2>
+        <p class="section-subtitle">Mengenal lebih dekat layanan transportasi utama kami</p>
+        <div class="profile-box">
+            <p><strong>PANDAWA GROUP</strong> merupakan perusahaan jasa transportasi terintegrasi yang melayani sektor Travel Reguler dan Car Rental. Kami berfokus pada penyediaan unit kendaraan berkualitas tinggi guna memenuhi mobilitas masyarakat modern serta kebutuhan logistik/bisnis.</p>
+        </div>
+    </section>
+
+    <!-- Fleet / Armada Section -->
+    <section id="armada">
+        <h2 class="section-title">Jelajahi Armada</h2>
+        <p class="section-subtitle">Daftar unit kendaraan terbaik beserta tarif resmi per hari / per orang</p>
+
+        <!-- KATEGORI RENTAL -->
+        <h3 class="category-title"><i class="fas fa-car"></i> Layanannya: Car Rental</h3>
+        <div class="fleet-grid">
+            
+            <!-- Rental Hiace -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                  <img src="91710hiace.png" alt=" Hiace">
+                    <i class="fas fa-bus-alt"></i> <!-- Ikon representasi minibus/van -->
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Hiace</div>
+                    <div class="fleet-meta"><i class="fas fa-users"></i> Kapasitas 15 Orang</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 1.900.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Elf Long Euro -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                  <img src="91711elflong.png" alt="">
+                    <i class="fas fa-bus"></i>
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Elf Long Euro</div>
+                    <div class="fleet-meta"><i class="fas fa-users"></i> Kapasitas 19 Orang</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 1.900.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Avanza -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                  <img src="98902xenia.png" alt="xenia">
+                    <i class="fas fa-car-side"></i> <!-- Ikon mobil MPV/Sedan -->
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Avanza (M.T / A.T)</div>
+                    <div class="fleet-meta"><i class="fas fa-cog"></i> Manual / Matic</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Avanza Veloz -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                  <img src="98900avanza.png" alt=" Avanzaveloz">
+                    <i class="fas fa-car-side"></i>
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Avanza Veloz (M.T / A.T)</div>
+                    <div class="fleet-meta"><i class="fas fa-cog"></i> Premium Trim</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Xenia -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="104000xenia.png" alt="xenia">
+                    <i class="fas fa-car-side"></i>
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Xenia (M.T / A.T)</div>
+                    <div class="fleet-meta"><i class="fas fa-cog"></i> Nyaman & Efisien</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Mobilio -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="98899mobilio.png" 
+                    alt=" mobilio">
+                    <i class="fas fa-car-side"></i>
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Mobilio (M.T / A.T)</div>
+                    <div class="fleet-meta"><i class="fas fa-cog"></i> Bagasi Luas</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental BRV -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="98901brv.png" alt="brv">
+                    <i class="fas fa-suv"></i> <!-- Ikon Crossover/SUV -->
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">BRV</div>
+                    <div class="fleet-meta"><i class="fas fa-shield-alt"></i> Gagah & Tangguh</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Sienta -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="98903sienta.png" alt="sienta">
+                    <i class="fas fa-car-side"></i>
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Sienta (M.T / A.T)</div>
+                    <div class="fleet-meta"><i class="fas fa-door-closed"></i> Sliding Door</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Brio -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="104002brio.png" alt=" brio">
+                    <i class="fas fa-car"></i>
+                    <span class="fleet-badge">Rental</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Brio (M.T / A.T)</div>
+                    <div class="fleet-meta"><i class="fas fa-city"></i> Lincah City Car</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Mulai</div>
+                        <div class="price-value">Rp 475.000<span class="price-unit">/day</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- KATEGORI TRAVEL REGULER -->
+        <h3 class="category-title"><i class="fas fa-route"></i> Layanannya: Travel Reguler</h3>
+        <div class="fleet-grid">
+            
+            <!-- Travel Hiace -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="91710hiace.png" alt=" Hiace">
+                    <i class="fas fa-bus-alt"></i>
+                    <span class="fleet-badge" style="background-color: var(--secondary-color);">Travel</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Hiace</div>
+                    <div class="fleet-meta"><i class="fas fa-couch"></i> Kursi Nyaman / Full AC</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Tiket</div>
+                        <div class="price-value">Rp 350.000<span class="price-unit">/orang</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Elf Long Euro -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="91711elflong.png" alt=" elflongeuro">
+                    <i class="fas fa-bus"></i>
+                    <span class="fleet-badge" style="background-color: var(--secondary-color);">Travel</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Elf Long Euro</div>
+                    <div class="fleet-meta"><i class="fas fa-couch"></i> Perjalanan Antar Kota</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Tiket</div>
+                        <div class="price-value">Rp 350.000<span class="price-unit">/orang</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Grandmax -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="91713grandmax.png" alt=" grandmax">
+                    <i class="fas fa-car-side"></i>
+                    <span class="fleet-badge" style="background-color: var(--secondary-color);">Travel</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Grandmax</div>
+                    <div class="fleet-meta"><i class="fas fa-shuttle-van"></i> Hemat & Fleksibel</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Tiket</div>
+                        <div class="price-value">Rp 250.000<span class="price-unit">/orang</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Luxio -->
+            <div class="fleet-card">
+                <div class="fleet-img-box">
+                    <img src="91712luxio.png" alt=" luxio">
+                    <i class="fas fa-car-side"></i>
+                    <span class="fleet-badge" style="background-color: var(--secondary-color);">Travel</span>
+                </div>
+                <div class="fleet-info">
+                    <div class="fleet-name">Luxio</div>
+                    <div class="fleet-meta"><i class="fas fa-star"></i> Kabin Lega & Nyaman</div>
+                    <div class="fleet-price-box">
+                        <div class="price-label">Tarif Tiket</div>
+                        <div class="price-value">Rp 250.000<span class="price-unit">/orang</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Rute Pelayanan Widget Tambahan -->
+        <div class="route-widget">
+            <h3><i class="fas fa-map-marked-alt"></i> Rute Utama Travel Reguler</h3>
+            <div class="route-tags">
+                <div class="route-tag">Bekasi <i class="fas fa-long-arrow-alt-right"></i> Bandung</div>
+                <div class="route-tag">Bekasi <i class="fas fa-long-arrow-alt-right"></i> Tasik</div>
+                <div class="route-tag">Bekasi <i class="fas fa-long-arrow-alt-right"></i> Garut</div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer / Kontak -->
+    <footer id="kontak">
+        <div class="cc-box">
+            <h3><i class="fas fa-headset"></i> CALL CENTER RESMI</h3>
+            <p>Klik nomor di bawah untuk pemesanan armada langsung ke admin:</p>
+            <a href="tel:087760666683" class="phone-number">0877-6066-6683</a>
+            <p style="margin-top: 5px; font-weight: 500; color: var(--secondary-color);">( Mas Guruh )</p>
+        </div>
+        <p>Pastikan kenyamanan perjalanan Anda bersama layanan prima Pandawa Group.</p>
+        <div class="copy">
+            &copy; 2026 Pandawa Group. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
